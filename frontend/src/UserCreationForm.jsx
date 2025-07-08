@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './UserCreationForm.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"; 
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 
 const UserCreationForm = ({ onBack }) => {
     const [formData, setFormData] = useState({
@@ -24,12 +22,6 @@ const UserCreationForm = ({ onBack }) => {
         });
     };
 
-    const handlePhoneChanges = (value) => {
-        setFormData({
-            ...formData,
-            phoneNumber: value,
-        });
-    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword); 
@@ -114,12 +106,13 @@ const UserCreationForm = ({ onBack }) => {
 
                 <div>
                     <label htmlFor="phoneNumber">Phone Number:</label>
-                    <PhoneInput
+                    <input
+                        type="tel"
                         id="phoneNumber"
-                        country={'us'}
+                        name="phoneNumber"
                         value={formData.phoneNumber}
-                        onChange={handlePhoneChanges}
-                        inputStyle={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+                        onChange={handleChange}
+                        required
                     />
                 </div>
                 <button id="submit" type="submit">Register</button>
